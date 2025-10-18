@@ -90,6 +90,41 @@ nav a:hover::after {
     padding: 2rem;
 }
 
+/* Particle Background */
+#particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: float linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.3;
+    }
+    90% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(-100px) translateX(50px);
+        opacity: 0;
+    }
+}
+
 .hero-content {
     z-index: 1;
     text-align: center;
@@ -155,4 +190,22 @@ nav a:hover::after {
     color: var(--gold);
     transform: translateY(-5px);
     filter: drop-shadow(0 0 15px var(--gold));
+}
+
+/* Section Styles */
+section {
+    padding: 8rem 5%;
+    position: relative;
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 4rem;
+    background: linear-gradient(135deg, var(--white), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 2px;
 }
