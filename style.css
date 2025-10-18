@@ -78,6 +78,131 @@ nav a:hover::after {
     width: 100%;
 }
 
+/* Skills Carousel Section */
+#skills {
+    padding: 6rem 5%;
+    background: linear-gradient(180deg, var(--dark-bg) 0%, rgba(42, 42, 42, 0.3) 50%, var(--dark-bg) 100%);
+    overflow: hidden;
+}
+
+.skills-carousel-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 3rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.skills-carousel-container::before,
+.skills-carousel-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.skills-carousel-container::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--dark-bg) 0%, transparent 100%);
+}
+
+.skills-carousel-container::after {
+    right: 0;
+    background: linear-gradient(270deg, var(--dark-bg) 0%, transparent 100%);
+}
+
+.skills-carousel {
+    display: flex;
+    gap: 4rem;
+    animation: scrollCarousel 30s linear infinite;
+    width: max-content;
+}
+
+@keyframes scrollCarousel {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    transition: all 0.3s ease;
+}
+
+.skill-icon-wrapper {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    margin-bottom: 1rem;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* .skill-icon-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease;
+} */
+
+/* .skill-item:hover .skill-icon-wrapper::before {
+    width: 200%;
+    height: 200%;
+} */
+
+.skill-icon-wrapper img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    filter: grayscale(30%);
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+
+/* .skill-item:hover .skill-icon-wrapper {
+    transform: translateY(-10px) scale(1.1);
+} */
+
+/* .skill-item:hover .skill-icon-wrapper img {
+    filter: grayscale(0%) drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+    transform: scale(1.1);
+} */
+
+.skill-item p {
+    color: var(--light-gray);
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover p {
+    color: var(--gold);
+    transform: translateY(-5px);
+}
+
 /* Hero Section */
 #hero {
     min-height: 100vh;
