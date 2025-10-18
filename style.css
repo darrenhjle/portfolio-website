@@ -77,3 +77,82 @@ nav a:hover {
 nav a:hover::after {
     width: 100%;
 }
+
+/* Hero Section */
+#hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+}
+
+.hero-content {
+    z-index: 1;
+    text-align: center;
+}
+
+.hero-name {
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--white), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    animation: fadeInGlow 2s ease forwards;
+}
+
+@keyframes fadeInGlow {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--light-gray);
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeIn 2s ease 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.social-links {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 2s ease 1s forwards;
+}
+
+.social-links a {
+    color: var(--white);
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.social-links a:hover {
+    color: var(--gold);
+    transform: translateY(-5px);
+    filter: drop-shadow(0 0 15px var(--gold));
+}
