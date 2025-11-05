@@ -54,6 +54,83 @@ projectCards.forEach((card, index) => {
     observer.observe(card);
 });
 
+// Observe award cards with staggered animation
+const awardCards = document.querySelectorAll('.award-card');
+awardCards.forEach((card, index) => {
+    card.style.transitionDelay = `${index * 0.1}s`;
+    observer.observe(card);
+});
+
+// Certificate Modal
+const modal = document.getElementById('certificateModal');
+const modalImg = document.getElementById('modalImage');
+const modalClose = document.querySelector('.modal-close');
+
+console.log('Modal elements:', { modal, modalImg, modalClose }); // Debug log
+
+// Close modal functions
+function closeModal() {
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        console.log('Modal closed'); // Debug log
+    }
+}
+
+// Add click event to all award images - needs to wait for DOM
+function initializeCertificateModal() {
+    const wrappers = document.querySelectorAll('.award-image-wrapper');
+    console.log('Found award wrappers:', wrappers.length); // Debug log
+    
+    wrappers.forEach((wrapper, index) => {
+        wrapper.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Award clicked:', index); // Debug log
+            
+            const img = this.querySelector('img');
+            console.log('Image found:', img, 'Source:', img?.src); // Debug log
+            
+            if (img && img.src && modal && modalImg) {
+                modal.classList.add('active');
+                modalImg.src = img.src;
+                modalImg.alt = img.alt;
+                document.body.style.overflow = 'hidden';
+                console.log('Modal should be visible now'); // Debug log
+            } else {
+                console.log('Missing elements or image source'); // Debug log
+            }
+        });
+    });
+}
+
+// Initialize modal after DOM is loaded
+initializeCertificateModal();
+
+// Close modal on X click
+if (modalClose) {
+    modalClose.addEventListener('click', function(e) {
+        e.stopPropagation();
+        closeModal();
+    });
+}
+
+// Close modal on background click
+if (modal) {
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+        closeModal();
+    }
+});
+
 // Back to top button
 const backToTopBtn = document.getElementById('backToTop');
 

@@ -152,7 +152,7 @@ nav a:hover::after {
     overflow: hidden;
 }
 
-/* .skill-icon-wrapper::before {
+.skill-icon-wrapper::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -163,12 +163,12 @@ nav a:hover::after {
     background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
     transform: translate(-50%, -50%);
     transition: all 0.4s ease;
-} */
+}
 
-/* .skill-item:hover .skill-icon-wrapper::before {
+.skill-item:hover .skill-icon-wrapper::before {
     width: 200%;
     height: 200%;
-} */
+}
 
 .skill-icon-wrapper img {
     width: 60px;
@@ -180,14 +180,14 @@ nav a:hover::after {
     z-index: 1;
 }
 
-/* .skill-item:hover .skill-icon-wrapper {
+.skill-item:hover .skill-icon-wrapper {
     transform: translateY(-10px) scale(1.1);
-} */
+}
 
-/* .skill-item:hover .skill-icon-wrapper img {
+.skill-item:hover .skill-icon-wrapper img {
     filter: grayscale(0%) drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
     transform: scale(1.1);
-} */
+}
 
 .skill-item p {
     color: var(--light-gray);
@@ -201,6 +201,184 @@ nav a:hover::after {
 .skill-item:hover p {
     color: var(--gold);
     transform: translateY(-5px);
+}
+
+/* Awards & Certificates Section */
+#awards {
+    background: linear-gradient(180deg, var(--dark-bg) 0%, rgba(42, 42, 42, 0.2) 50%, var(--dark-bg) 100%);
+    padding: 8rem 5%;
+    position: relative;
+}
+
+.awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.award-card {
+    background: rgba(42, 42, 42, 0.5);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.award-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.award-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+    transform: translateY(-10px);
+}
+
+.award-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: rgba(13, 13, 13, 0.8);
+    cursor: pointer;
+}
+
+.award-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.award-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(212, 175, 55, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.award-overlay i {
+    font-size: 3rem;
+    color: var(--dark-bg);
+    transform: scale(0.5);
+    transition: all 0.4s ease;
+}
+
+.award-card:hover .award-overlay {
+    opacity: 1;
+}
+
+.award-card:hover .award-overlay i {
+    transform: scale(1);
+}
+
+.award-card:hover .award-image-wrapper img {
+    transform: scale(1.1);
+}
+
+.award-info {
+    padding: 2rem;
+}
+
+.award-info h3 {
+    color: var(--white);
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.award-issuer {
+    color: var(--gold);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.award-date {
+    color: var(--light-gray);
+    font-size: 0.85rem;
+    font-weight: 300;
+}
+
+/* Modal for full-size certificate view */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    position: relative;
+    animation: zoomIn 0.3s ease;
+    padding: 2rem;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.5);
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: var(--white);
+    font-size: 3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2001;
+    background: rgba(13, 13, 13, 0.8);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.modal-close:hover {
+    color: var(--gold);
+    transform: rotate(90deg);
 }
 
 /* Hero Section */
@@ -546,10 +724,27 @@ section {
 @media (max-width: 968px) {
     .hero-name {
         font-size: 3.5rem;
+        letter-spacing: 2px;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    nav {
+        padding: 1rem 3%;
     }
 
     nav ul {
         gap: 1.5rem;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
     }
 
     .skills-carousel {
@@ -578,41 +773,280 @@ section {
         flex-direction: column !important;
         align-items: flex-start;
         padding-left: 60px;
+        margin-bottom: 3rem;
     }
 
     .timeline-content {
         width: 100%;
+        padding: 1.5rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.3rem;
     }
 
     .timeline-date {
         left: 20px !important;
         transform: translateY(-50%);
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
     }
 
     .projects-grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .awards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .award-image-wrapper {
+        height: 220px;
+    }
+
+    .award-info {
+        padding: 1.5rem;
+    }
+
+    .award-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .project-card {
+        padding: 2rem;
+    }
+
+    .project-icon {
+        font-size: 2.5rem;
+    }
+
+    .project-card h3 {
+        font-size: 1.5rem;
     }
 
     section {
         padding: 5rem 5%;
+    }
+
+    #skills {
+        padding: 4rem 5%;
+    }
+
+    #backToTop {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+        bottom: 20px;
+        right: 20px;
     }
 }
 
 @media (max-width: 600px) {
     .hero-name {
         font-size: 2.5rem;
+        letter-spacing: 1px;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+    }
+
+    .social-links {
+        gap: 1.5rem;
+    }
+
+    .social-links a {
+        font-size: 1.5rem;
+    }
+
+    nav {
+        padding: 1rem 4%;
     }
 
     nav ul {
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 0.8rem;
+        justify-content: center;
     }
 
     nav a {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
     }
 
     .section-title {
         font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    section {
+        padding: 4rem 5%;
+    }
+
+    #skills {
+        padding: 3rem 5%;
+    }
+
+    .skills-carousel {
+        gap: 2.5rem;
+    }
+
+    .skill-icon-wrapper {
+        width: 70px;
+        height: 70px;
+    }
+
+    .skill-icon-wrapper img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .skill-item {
+        min-width: 100px;
+    }
+
+    .skill-item p {
+        font-size: 0.85rem;
+    }
+
+    .timeline-item {
+        padding-left: 50px;
+        margin-bottom: 2.5rem;
+    }
+
+    .timeline-content {
+        padding: 1.2rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .timeline-content p {
+        font-size: 0.9rem;
+    }
+
+    .timeline-date {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .projects-grid {
+        gap: 1.5rem;
+    }
+
+    .project-card {
+        padding: 1.5rem;
+    }
+
+    .project-icon {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .project-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .project-card p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .project-link {
+        font-size: 0.9rem;
+    }
+
+    .awards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .award-image-wrapper {
+        height: 200px;
+    }
+
+    .award-info {
+        padding: 1.2rem;
+    }
+
+    .award-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .award-issuer {
+        font-size: 0.85rem;
+    }
+
+    .award-date {
+        font-size: 0.8rem;
+    }
+
+    .modal-content {
+        max-width: 95%;
+        max-height: 85%;
+    }
+
+    .modal-close {
+        font-size: 1.8rem;
+        top: -35px;
+    }
+
+    #backToTop {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero-name {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.85rem;
+    }
+
+    nav {
+        padding: 0.8rem 3%;
+    }
+
+    nav a {
+        font-size: 0.75rem;
+    }
+
+    .section-title {
+        font-size: 1.7rem;
+    }
+
+    .skill-icon-wrapper {
+        width: 60px;
+        height: 60px;
+    }
+
+    .skill-icon-wrapper img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .project-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .award-image-wrapper {
+        height: 180px;
+    }
+
+    .award-info h3 {
+        font-size: 1rem;
     }
 }
